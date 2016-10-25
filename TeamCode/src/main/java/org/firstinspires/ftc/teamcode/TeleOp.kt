@@ -11,8 +11,6 @@ class TeleOp: KOpMode()
 {
     companion object : HardwareDefinitions();
 
-    //private val whatever = object : Task
-
     override fun loop()
     {
         // Basic forward and backward movement and rotation
