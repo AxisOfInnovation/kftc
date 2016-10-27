@@ -13,6 +13,9 @@ class BasicAuto : KOpMode()
 {
     companion object : HardwareDefinitions();
 
+    /** A configurable value for the initial waitTime before the autonomous runs */
+    private val waitTime = get( "waitTime", 0L );
+
     /**
      * Moves the robot in the specified direction/rotates the robot
      * @param rotate
@@ -51,7 +54,11 @@ class BasicAuto : KOpMode()
 
     override fun loop()
     {
-        val firstInterval = Interval( 10000 );
+        val waitTime = Interval( waitTime );
+
+        // Set the first interval for the autonomous to run
+        // after the specified waitTime has run
+        val firstInterval = Interval( waitTime, 10000 );
 
         while ( firstInterval.isActive() )
         {

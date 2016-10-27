@@ -2,11 +2,13 @@ package org.firstinspires.ftc.teamcode
 
 import addonovan.kftc.KOpMode
 import addonovan.kftc.Task
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
 /**
  * Created by gaarj on 10/17/2016.
  */
 
+@TeleOp( name = "TeleOp" )
 class TeleOp: KOpMode()
 {
     companion object : HardwareDefinitions();
@@ -18,24 +20,15 @@ class TeleOp: KOpMode()
         motorRight.power = Gamepad1.left_stick_y.toDouble() - Gamepad1.left_stick_x.toDouble();
 
 
-        // Use the DPad up and down keys to control movement of the vertical conveyor belt
+        // Use the DPad up and down keys to control movement of the catapult
         if (Gamepad1.dpad_down)
         {
-            motorConv.power = -1.0;
+            motorCatapult.power = -1.0;
         } else if (Gamepad1.dpad_up)
         {
-            motorConv.power = 1.0;
-        } else
-        {
-            motorConv.power = 0.0;
-        }
-
-        if (Gamepad1.right_bumper)
-        {
-            motorFlick.power = 1.0;
-        } else
-        {
-            motorFlick.power = 0.0;
+            motorCatapult.power = 1.0;
+        } else {
+            motorCatapult.power = 0.0;
         }
     }
 }
