@@ -19,16 +19,8 @@ class TeleOp: KOpMode()
         motorLeft.power = Gamepad1.left_stick_y.toDouble() + Gamepad1.left_stick_x.toDouble();
         motorRight.power = Gamepad1.left_stick_y.toDouble() - Gamepad1.left_stick_x.toDouble();
 
-
-        // Use the DPad up and down keys to control movement of the catapult
-        if (Gamepad1.dpad_down)
-        {
-            motorCatapult.power = -1.0;
-        } else if (Gamepad1.dpad_up)
-        {
-            motorCatapult.power = 1.0;
-        } else {
-            motorCatapult.power = 0.0;
-        }
+        // Use the pen servo :)
+        // Toggle with the b button
+        if ( Gamepad1.b ) servoPen.toggle();
     }
 }
