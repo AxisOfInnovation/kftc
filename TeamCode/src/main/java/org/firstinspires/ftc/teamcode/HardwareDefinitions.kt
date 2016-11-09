@@ -5,7 +5,7 @@ import addonovan.kftc.hardware.Motor
 import addonovan.kftc.hardware.ToggleServo
 import addonovan.kftc.util.MotorAssembly
 import addonovan.kftc.util.MotorType
-import com.qualcomm.robotcore.hardware.DcMotor
+import com.qualcomm.robotcore.hardware.ColorSensor
 import com.qualcomm.robotcore.hardware.Servo
 
 /**
@@ -21,6 +21,8 @@ abstract class HardwareDefinitions : HardwareDefinition()
     // The servo that handles the bar that encloses the pen for the balls
     val servoPenBaseValue: Servo = get( "servo_pen" );
 
-    // Make it into a toogle servo :)
+    // Make the servo into a toggle servo :)
     val servoPen = ToggleServo( servoPenBaseValue );
+
+    val colorSensor: ColorSensor = get( "colorSensor" );
 }

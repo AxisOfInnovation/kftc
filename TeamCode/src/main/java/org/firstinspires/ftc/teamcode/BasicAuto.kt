@@ -54,21 +54,12 @@ class BasicAuto : KOpMode()
 
     override fun loop()
     {
-        val waitTime = Interval( waitTime );
 
         // Set the first interval for the autonomous to run
         // after the specified waitTime has run
-        val firstInterval = Interval( waitTime, 10000 );
+        val firstInterval = Interval( Interval( waitTime ), 10000 );
 
         while ( firstInterval.isActive() )
-        {
-            // Rotate left
-            move( true, true );
-        }
-
-        val secondInterval = Interval( firstInterval, 10000 );
-
-        while ( secondInterval.isActive() )
         {
             // Move forward
             move( true, false )
