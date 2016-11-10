@@ -8,9 +8,7 @@ import addonovan.kftc.util.MotorType
 import com.qualcomm.robotcore.hardware.ColorSensor
 import com.qualcomm.robotcore.hardware.Servo
 
-/**
- * Created by gaarj on 10/17/2016.
- */
+/** Created by gaarj on 10/17/2016 */
 
 abstract class HardwareDefinitions : HardwareDefinition()
 {
@@ -24,5 +22,9 @@ abstract class HardwareDefinitions : HardwareDefinition()
     // Make the servo into a toggle servo :)
     val servoPen = ToggleServo( servoPenBaseValue );
 
-    val colorSensor: ColorSensor = get( "colorSensor" );
+    // The color sensing facing the ground
+    val CSGround: ColorSensor = get( "colorSensorGround" );
+
+    // The color sensing facing out the side of the robot
+    val CSWall: ColorSensor = get( "colorSensorSide" );
 }
