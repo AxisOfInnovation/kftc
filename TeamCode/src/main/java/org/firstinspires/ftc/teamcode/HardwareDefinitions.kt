@@ -16,11 +16,9 @@ abstract class HardwareDefinitions : HardwareDefinition()
     val motorLeft = get< Motor >( "motor_left" ).setAssembly( MotorAssembly( MotorType.NEVEREST_40 ) );
     val motorRight = get< Motor >( "motor_right" ).setAssembly( MotorAssembly( MotorType.NEVEREST_40 ) );
 
-    // The servo that handles the bar that encloses the pen for the balls
-    val servoPenBaseValue: Servo = get( "servo_pen" );
-
-    // Make the servo into a toggle servo :)
-    val servoPen = ToggleServo( servoPenBaseValue );
+    // The winch motors
+    val motorWinch1: Motor = get( "motor_winch1" );
+    val motorWinch2: Motor = get( "motor_winch2" );
 
     // The color sensing facing the ground
     val CSGround: ColorSensor = get( "colorSensorGround" );

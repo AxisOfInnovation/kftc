@@ -19,8 +19,17 @@ class TeleOp: KOpMode()
         motorLeft.power = Gamepad1.left_stick_y.toDouble() + Gamepad1.left_stick_x.toDouble();
         motorRight.power = Gamepad1.left_stick_y.toDouble() - Gamepad1.left_stick_x.toDouble();
 
-        // Use the pen servo :)
-        // Toggle with the b button
-        if ( Gamepad1.b ) servoPen.toggle();
+        // Handles the linear slide moving up and down with the winch motors
+        if ( Gamepad1.dpad_up )
+        {
+            motorWinch1.power = 1.0;
+            motorWinch2.power = 1.0;
+        }
+
+        if ( Gamepad1.dpad_down )
+        {
+            motorWinch1.power = -1.0;
+            motorWinch2.power = -1.0;
+        }
     }
 }
