@@ -97,10 +97,11 @@ open class Interval( startTime: Long, duration: Long )
         // Interval the benefit of the doubt.
 
         // calculate the differences in the time with the boundaries
-        val startDiff = Math.abs( time - StartTime );
-        val endDiff = Math.abs( time - EndTime );
-
-        return startDiff <= 5 || endDiff <= 5;
+//        val startDiff = Math.abs( time - StartTime );
+//        val endDiff = Math.abs( time - EndTime );
+//
+//        return startDiff <= 5 || endDiff <= 5;
+        return false;
     }
 
 }

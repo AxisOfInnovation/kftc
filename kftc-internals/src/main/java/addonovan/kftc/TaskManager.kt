@@ -188,7 +188,6 @@ object TaskManager : ILog by getLog( TaskManager::class )
                     task.onStart();
                 }
 
-                v( "Ticking task: \"$name\"" );
                 task.tick();
 
                 // remove it if it's finished

@@ -25,6 +25,7 @@ package addonovan.kftc.hardware
 
 import com.qualcomm.robotcore.hardware.*
 import com.qualcomm.robotcore.util.Hardware
+import java.lang.annotation.Documented
 import kotlin.reflect.KClass
 
 
@@ -62,4 +63,7 @@ import kotlin.reflect.KClass
  * @author addonovan
  * @since 8/27/16
  */
-annotation class HardwareExtension( val hardwareMapType: KClass< out HardwareDevice > );
+@MustBeDocumented
+@Target( AnnotationTarget.CLASS )
+@Retention(AnnotationRetention.RUNTIME)
+annotation class HardwareExtension(val hardwareMapType: KClass<out HardwareDevice>);

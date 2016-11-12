@@ -107,7 +107,7 @@ fun showToast( message: String, time: Int = Toast.LENGTH_SHORT )
 /** The com.qualcomm.ftcrobotcontroller.R.id class. */
 private val rIdClass: Class< * > by lazy()
 {
-    android.util.Log.v( "ftcext.R", "Locating com.qualcomm.ftcrobotcontroller.R.id" );
+    android.util.Log.v( "kftc.R", "Locating com.qualcomm.ftcrobotcontroller.R.id" );
 
     val rClass = Class.forName( "com.qualcomm.ftcrobotcontroller.R" )!!;
     val classes = rClass.declaredClasses;

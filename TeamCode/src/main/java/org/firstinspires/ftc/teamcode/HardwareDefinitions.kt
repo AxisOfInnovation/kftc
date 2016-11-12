@@ -2,9 +2,12 @@ package org.firstinspires.ftc.teamcode
 
 import addonovan.kftc.hardware.HardwareDefinition
 import addonovan.kftc.hardware.Motor
+import addonovan.kftc.hardware.ToggleServo
 import addonovan.kftc.util.MotorAssembly
 import addonovan.kftc.util.MotorType
 import com.qualcomm.robotcore.hardware.DcMotor
+import com.qualcomm.robotcore.hardware.DcMotorSimple
+import com.qualcomm.robotcore.hardware.Servo
 
 /**
  * Created by gaarj on 10/17/2016.
@@ -13,9 +16,14 @@ import com.qualcomm.robotcore.hardware.DcMotor
 abstract class HardwareDefinitions : HardwareDefinition()
 {
     // Define the drive motors
-    val motorLeft = get< Motor >( "motor_left" ).setAssembly( MotorAssembly( MotorType.NEVEREST_40 ) );
-    val motorRight = get< Motor >( "motor_right" ).setAssembly( MotorAssembly( MotorType.NEVEREST_40 ) );
+    val motorLeft = get< DcMotor >( "motor left" );
+    val motorRight = get< DcMotor >( "motor right" );
 
-    // The catapult launching motor
-    val motorCatapult: Motor = get( "motor_catapult" );
+    init
+    {
+        motorRight.direction = DcMotorSimple.Direction.REVERSE;
+    }
+
+    val motorWinch1 = get< DcMotor >( "motor winch1" );
+    val motorWinch2 = get< DcMotor >( "motor winch2" );
 }
