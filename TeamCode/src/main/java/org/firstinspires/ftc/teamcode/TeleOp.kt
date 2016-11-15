@@ -24,12 +24,14 @@ class TeleOp: KOpMode()
         {
             motorWinch1.power = 1.0;
             motorWinch2.power = 1.0;
-        }
-
-        if ( Gamepad1.dpad_down )
+        } else if ( Gamepad1.dpad_down )
         {
             motorWinch1.power = -1.0;
             motorWinch2.power = -1.0;
+        } else
+        {
+            motorWinch1.brake();
+            motorWinch2.brake();
         }
     }
 }
