@@ -41,22 +41,22 @@ import com.qualcomm.robotcore.hardware.HardwareDevice
 /**
  * @return If this is marked with [TeleOp].
  */
-fun Class< out KAbstractOpMode >.isTeleOp(): Boolean = isAnnotationPresent( TeleOp::class.java );
+fun Class< out OpMode >.isTeleOp(): Boolean = isAnnotationPresent( TeleOp::class.java );
 
 /**
  * @return If this is marked with [Autonomous].
  */
-fun Class< out KAbstractOpMode >.isAutonomous(): Boolean = isAnnotationPresent( Autonomous::class.java );
+fun Class< out OpMode >.isAutonomous(): Boolean = isAnnotationPresent( Autonomous::class.java );
 
 /**
  * @return If this has neither [Autonomous] nor [TeleOp] or is marked with [Disabled].
  */
-fun Class< out KAbstractOpMode >.isNotRegisterable(): Boolean = !isAutonomous() && !isTeleOp() || isAnnotationPresent( Disabled::class.java );
+fun Class< out OpMode >.isNotRegisterable(): Boolean = ( !isAutonomous() && !isTeleOp() ) || isAnnotationPresent( Disabled::class.java );
 
 /**
  * @return The value from the "name" parameter on the annotation.
  */
-fun Class< out KAbstractOpMode >.getAnnotatedName(): String =
+fun Class< out OpMode >.getAnnotatedName(): String =
         // return the name from the teleop annotation
         if ( isTeleOp() ) getAnnotation( TeleOp::class.java )!!.name;
 
@@ -69,7 +69,7 @@ fun Class< out KAbstractOpMode >.getAnnotatedName(): String =
 /**
  * @return The value from the "group" parameter on the annotation.
  */
-fun Class< out KAbstractOpMode >.getAnnotatedGroup(): String =
+fun Class< out OpMode >.getAnnotatedGroup(): String =
         // return the group from the teleop annotation
         if ( isTeleOp() ) getAnnotation( TeleOp::class.java )!!.group;
 
@@ -78,6 +78,25 @@ fun Class< out KAbstractOpMode >.getAnnotatedGroup(): String =
 
         // throw an exception
         else throw IllegalStateException( "No @TeleOp or @Autonomous annotation on this class? Shame on you. $canonicalName" );
+
+/**
+ * @return The OpModeMeta object for this class.
+ */
+fun Class< out OpMode >.getOpModeMeta() : OpModeMeta
+{
+        val flavor =
+                if ( isTeleOp() )
+                {
+                        OpModeMeta.Flavor.TELEOP;
+                }
+                else
+                {
+                        OpModeMeta.Flavor.AUTONOMOUS;
+                }
+
+
+        return OpModeMeta( getAnnotatedName(), flavor, getAnnotatedGroup() );
+}
 
 //
 // HardwareExtension

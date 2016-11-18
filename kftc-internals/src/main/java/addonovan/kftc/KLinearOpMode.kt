@@ -23,73 +23,36 @@
  */
 package addonovan.kftc
 
+import addonovan.kftc.config.Configurations
+import addonovan.kftc.config.Profile
+import addonovan.kftc.hardware.getDeviceByType
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
+import com.qualcomm.robotcore.eventloop.opmode.OpMode
+import com.qualcomm.robotcore.hardware.HardwareDevice
+
 /**
- * The kotlin equivalent of the Qualcomm LinearOpMode.
+ * A special type of LinearOpMode that provides a few extra conveniences
+ * to the user.
  *
  * @author addonovan
- * @since 8/22/2016
+ * @since 11/14/16
  */
-abstract class KLinearOpMode : KAbstractOpMode()
+abstract class KLinearOpMode : LinearOpMode(), IConfigurable, ILog by getLog( KLinearOpMode::class )
 {
 
-    /**
-     * Sleeps for the given period of time.
-     *
-     * @param[milliseconds]
-     *          The time, in milliseconds, to sleep for.
-     *
-     * @return `true` if an exception was thrown, `false` otherwise.
-     */
-    fun sleep( milliseconds: Long ): Boolean
+    init
     {
-        try
-        {
-            Thread.sleep( milliseconds );
-            return false;
-        }
-        catch ( e: InterruptedException )
-        {
-            i( "Encountered Interruppted exception while sleeping!", e );
-            return true;
-        }
+        unhookRobotIcon();
     }
 
-    abstract fun runOpMode();
-
     //
-    // LinearOpMode methods
+    // IConfigurable
     //
 
     /**
-     * Puts the current thread to sleep for a bit as it has nothing better to do.
-     * This allows other threads in the system to run.
-     *
-     * This is entirely optional, it just might help make the system a little more
-     * responsive or efficient. While this is similar to the old `waitOnFullHardwareCycle()`
-     * function, this does not guarantee the passage of even a single hardware cycle.
+     * The configuration profile used for the configuration methods.
      */
-    @Suppress( "unused" )
-    fun idle()
-    {
-        AddOpModeRegister.CurrentLinearOpMode.idle(); // call our wrapper to idle
-    }
-
-    /**
-     * @return If the OpMode is actually active and should continue running.
-     */
-    @Suppress( "unused" )
-    fun isOpModeActive() = AddOpModeRegister.CurrentLinearOpMode.opModeIsActive();
-
-    /**
-     * @return If this OpMode has started or not.
-     */
-    @Suppress( "unused" )
-    fun isStarted() = AddOpModeRegister.CurrentLinearOpMode.isStarted;
-
-    /**
-     * @return If the OpMode has been requested to stop or not.
-     */
-    @Suppress( "unused" )
-    fun isStopRequested() = AddOpModeRegister.CurrentLinearOpMode.isStopRequested;
+    override val ConfigProfile: Profile = Configurations.profileFor( javaClass );
 
 }
+

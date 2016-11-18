@@ -47,6 +47,7 @@ import com.qualcomm.robotcore.hardware.*
  * @author addonovan
  * @since 6/27/16
  */
+@Suppress( "unused" )
 @HardwareExtension( DcMotor::class )
 class Motor( dcMotor: DcMotor, name: String ) : DcMotorImpl( dcMotor.controller, dcMotor.portNumber, dcMotor.direction )
 {
@@ -158,19 +159,5 @@ class Motor( dcMotor: DcMotor, name: String ) : DcMotorImpl( dcMotor.controller,
     {
         power = 0.0;
     }
-
-    /**
-     * @param[power]
-     *          The power to set the motor at [-1,1].
-     */
-    override fun setPower( power: Double )
-    {
-        super.setPower( power );
-    }
-
-    /**
-     * @return The power, on a scale of [-1,1].
-     */
-    override fun getPower() = super.getPower();
 
 }
