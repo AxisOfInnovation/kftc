@@ -35,11 +35,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap
  * @author addonovan
  * @since 8/27/16
  */
-abstract class HardwareDefinition( opMode: OpMode )
+abstract class HardwareDefinition()
 {
 
     /** The underlying HardwareMap for this definition.*/
-    val hardwareMap: HardwareMap by lazy { opMode.hardwareMap };
+    abstract val hardwareMap: HardwareMap;
 
     /**
      * Simple function to get all types of hardware by parameterization.

@@ -24,6 +24,7 @@
 package addonovan.kftc
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
+import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import java.util.*
 
 /**
@@ -84,7 +85,7 @@ object TaskManager : ILog by getLog( TaskManager::class )
     /**
      * Prepares the Task Manager to use the given opmode.
      */
-    internal fun prepareFor( opMode: OpMode )
+    internal fun prepareFor( opMode: OpMode)
     {
         _isLinearOpMode = opMode is LinearOpMode;
         // TODO anything else that requires initialization now
